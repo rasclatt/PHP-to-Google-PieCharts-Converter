@@ -1,9 +1,10 @@
 # PHPtoGooglePieCharts
 > Create Google Pie Charts using php. This class will build the basic chart for you.
 
-To use this library, apply to your page like the example below.
+**To use this library, apply to your page like the example below:**
 
-````<?php
+````
+<?php
 include_once(__DIR__'/classes/class.GoogleCharts.php');
 $Googlizer					=	new GoogleCharts(); 
 $settings["incr"]			=	1; 
@@ -31,11 +32,13 @@ echo $Googlizer	->ChartOptions(array("title"=>$title,"legend"=>"none","is3D"=>tr
 <body>
 	<div id="<?php echo $settings['id']; ?>" style="width: 900px; height: 500px;"></div>
 </body> 
-</html>````
+</html>
+````
 
-> The above will generate something similar to:
+**The above will generate something similar to:**
 
-````<html> 
+````
+<html> 
 <head>
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
 <script type="text/javascript">
@@ -77,4 +80,5 @@ function drawChart(ArrayElem,IdElem)
 <body>
 	<div id="piechart1" style="width: 900px; height: 500px;"></div>
 </body> 
-</html>````
+</html>
+````
