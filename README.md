@@ -1,4 +1,4 @@
-# PHP-to-Google-Pie-Charts-Converter
+# PHP-to-Google-PieCharts-Converter
 > Create Google Pie Charts using php. This class will build the basic chart for you.
 
 **To use this library, apply to your page like the example below:**
