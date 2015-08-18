@@ -33,11 +33,11 @@ echo $Googlizer	->ChartOptions(array("title"=>$title,"legend"=>"none","is3D"=>tr
 	<div id="<?php echo $settings['id']; ?>" style="width: 900px; height: 500px;"></div>
 </body> 
 </html>
-php````
+````
 
 **The above will generate something similar to:**
 
-````php
+```php
 <html> 
 <head>
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
@@ -81,4 +81,4 @@ function drawChart(ArrayElem,IdElem)
 	<div id="piechart1" style="width: 900px; height: 500px;"></div>
 </body> 
 </html>
-php````
+````
