@@ -47,7 +47,7 @@ google.load("visualization", "1", {packages:["corechart"]});
 // Let the callback run a function
 google.setOnLoadCallback(function() {
 var DataSet1   =   [
-					['Task', 'CHC.001'],
+					['Task', 'My Pie Chart'],
 					['cond1', 7],
 					['cond2', 4],
 					['cond3', 9]
@@ -65,7 +65,7 @@ function drawChart(ArrayElem,IdElem)
     {
         var data = google.visualization.arrayToDataTable(ArrayElem);
 		var options = {
-			title: 'CHC.001',
+			title: 'My Pie Chart',
 			legend: 'none',
 			is3D: '1'
 		};
