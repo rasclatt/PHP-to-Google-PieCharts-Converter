@@ -10,7 +10,7 @@ $Googlizer					=	new GoogleCharts();
 $settings["incr"]			=	1; 
 $settings['id']				=	"piechart".$settings["incr"]; 
 $title						=	"My Pie Chart"; 
-// The line is required or the pie chart will fail in this chart type
+// This line is required or the pie chart will fail
 $settings['data']['Task']	=	$title; 
 $settings['data']['cond1']	=	29; 
 $settings['data']['cond2']	=	35; 
