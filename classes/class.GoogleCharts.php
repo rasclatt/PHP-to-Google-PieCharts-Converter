@@ -1,4 +1,4 @@
-
+<?php
     class   GoogleCharts
         {
             public      $newArr;
@@ -146,3 +146,4 @@ function drawChart(ArrayElem,IdElem)
 					return $this;
 				}
         }
+?>
