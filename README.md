@@ -5,7 +5,7 @@
 
 ````php
 <?php
-include_once(__DIR__'/classes/class.GoogleCharts.php');
+include_once(__DIR__.'/classes/class.GoogleCharts.php');
 $Googlizer					=	new GoogleCharts(); 
 $settings["incr"]			=	1; 
 $settings['id']				=	"piechart".$settings["incr"]; 
