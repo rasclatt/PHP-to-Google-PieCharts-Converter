@@ -1,5 +1,5 @@
 <?php
-    class   GoogleCharts
+     class   GoogleCharts
         {
             public      $newArr;
             public      $VarName;
@@ -34,7 +34,8 @@
                     if($data != false && $this->id != false) {
                             foreach($data as $key => $value) {
                                     $dvalue         =   (is_numeric($value))? $value:"'{$value}'";
-                                    $this->newArr[] =   "\t\t\t\t\t['{$key}', {$dvalue}]";
+									$key			=	(is_numeric($key))? $key:"'{$key}'";
+                                    $this->newArr[] =   "\t\t\t\t\t[{$key}, {$dvalue}]";
                                 }
                         }
 
@@ -66,8 +67,10 @@
 										$return[$k]	=	$k.': '.$this->MakeJSObjects($v);
 								}
 						}
-					else
-						$return	=	(strpos($arr,'{') !== false && strpos($arr,'}') !== false)? $arr : "'$arr'";
+					else {
+							$arr	=	(is_numeric($arr) || $arr === 'true' || $arr === 'false')? $arr: "'$arr'";
+							$return	=	(strpos($arr,'{') !== false && strpos($arr,'}') !== false)? trim($arr,"'") : $arr;
+						}
 					
 					return (is_array($return))? '{ '.PHP_EOL."\t".implode(",\t".PHP_EOL."\t",$return).PHP_EOL.' }' : $return;
 				}
