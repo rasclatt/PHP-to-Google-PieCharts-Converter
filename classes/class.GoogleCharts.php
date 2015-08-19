@@ -1,4 +1,4 @@
-<?php
+
     class   GoogleCharts
         {
             public      $newArr;
@@ -8,10 +8,15 @@
 
             protected   $id;
             protected   $compiler;
+			protected	$chartType;
+
+			const	PIE		=	'pie';
+			const	SCATTER	=	'scatter';
 
             public  function __construct()
                 {
-                    $this->options  =   array("title"=>"Untitled");
+                    $this->options  	=   array("title"=>"Untitled");
+					$this->chartType	=	'pie';
                 }
 
             function CreatePie($settings = false)
@@ -53,23 +58,28 @@
 
                     return $str;
                 }
-
+			
+			protected	function MakeJSObjects($arr)
+				{
+					if(is_array($arr)) {			
+							foreach($arr as $k => $v) {
+										$return[$k]	=	$k.': '.$this->MakeJSObjects($v);
+								}
+						}
+					else
+						$return	=	(strpos($arr,'{') !== false && strpos($arr,'}') !== false)? $arr : "'$arr'";
+					
+					return (is_array($return))? '{ '.PHP_EOL."\t".implode(",\t".PHP_EOL."\t",$return).PHP_EOL.' }' : $return;
+				}
+			
             public  function ChartOptions($opts)
                 {
                     if(!is_array($opts))
                         return $this;
-
-                    $this->options  =   array();
-
-                    foreach($opts as $key => $val) {
-                            $this->options[]    =   $key.": '".$val."'";
-                        }
-
-                    if(!empty($this->options)) {
-                        $this->options  =   "\t\tvar options = {".PHP_EOL."\t\t\t".implode(",".PHP_EOL."\t\t\t",$this->options).PHP_EOL."\t\t};".PHP_EOL;
-                        }
-
-                    return $this;
+					
+					$this->options	=	"\t\tvar options =".$this->MakeJSObjects($opts).";";
+                    
+					return $this;
                 }
 
             public  function ChartInstance()
@@ -113,7 +123,7 @@ function drawChart(ArrayElem,IdElem)
 
         $comp[] =   '
 
-        var chart = new google.visualization.PieChart(document.getElementById(IdElem));
+        var chart = new google.visualization.'.$this->chartType.'(document.getElementById(IdElem));
 
         chart.draw(data, options);
     }';
@@ -123,5 +133,16 @@ function drawChart(ArrayElem,IdElem)
 
                     return implode("",$comp);
                 }
+			public	function ChartKind($type = 'pie')
+				{
+					switch($type) {
+							case('scatter'):
+								$this->chartType	=	'ScatterChart';
+								break;
+							default:
+								$this->chartType	=	'PieChart';
+						}
+						
+					return $this;
+				}
         }
-?>
