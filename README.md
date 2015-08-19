@@ -23,6 +23,7 @@ $chart1_data = $Googlizer->ChartData();
 $chart1_inst = $Googlizer->ChartInstance();
 // This will generate the javascript
 echo $Googlizer	->ChartOptions(array("title"=>$title,"legend"=>"none","is3D"=>true)) 
+				->ChartKind(GoogleCharts::PIE)
 				->CreateJavascript(array("data"=>array($chart1_data, $chart1_inst),"wrap"=>true,"lib"=>true)); 
 ?><html> 
 <head>
