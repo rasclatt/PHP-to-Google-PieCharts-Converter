@@ -28,17 +28,17 @@
 					$this->CreatePie($settings);
 					return $this;
 				}
-				
-            public	function CreatePie($settings = false)
-                {
-                    if(!is_array($settings))
-                        return;
-                    $data           =   (!empty($settings['data']))? $settings['data']:false;
-                    $this->id       =   (!empty($settings['id']))? $settings['id']:false;
-                    $incr           =   (!empty($settings['incr']))? $settings['incr']:false;
-                    $this->VarName  =   "";
-                    $this->newArr   =   array();
-                    if($data != false && $this->id != false) {
+
+			public	function CreatePie($settings = false)
+				{
+					if(!is_array($settings))
+						return;
+					$data           =   (!empty($settings['data']))? $settings['data']:false;
+					$this->id       =   (!empty($settings['id']))? $settings['id']:false;
+					$incr           =   (!empty($settings['incr']))? $settings['incr']:false;
+					$this->VarName  =   "";
+					$this->newArr   =   array();
+					if($data != false && $this->id != false) {
 							if(is_array($data)) {
 									foreach($data as $key => $value) {
 											$dvalue         =   (is_numeric($value) || strpos($value,'[') !== false)? $value:"'{$value}'";
@@ -48,17 +48,17 @@
 								}
 							else
 								$this->newArr[] =   $data;
-                        }
-						
-                    $this->VarName  =   "DataSet{$incr}";
-                    if(!empty($this->newArr)) {
-                            $str    =   PHP_EOL."var {$this->VarName}   =   [".PHP_EOL;
-                            $str    .=  implode(",".PHP_EOL,$this->newArr).PHP_EOL;
-                            $str    .=  "\t\t\t\t]".PHP_EOL;
-                        }
-                    $this->DataArray    =   (!empty($str))? $str:false;
-                    return $this;
-                }
+						}
+								
+					$this->VarName  =   "DataSet{$incr}";
+					if(!empty($this->newArr)) {
+							$str    =   PHP_EOL."var {$this->VarName}   =   [".PHP_EOL;
+							$str    .=  implode(",".PHP_EOL,$this->newArr).PHP_EOL;
+							$str    .=  "\t\t\t\t]".PHP_EOL;
+						}
+					$this->DataArray    =   (!empty($str))? $str:false;
+					return $this;
+		                }
 			
 			protected	function MakeJSObjects($arr)
 				{
@@ -121,24 +121,24 @@ google.load("visualization", "1", {packages:["corechart"]});
 // Let the callback run a function
 google.setOnLoadCallback(function() {';
 					for($i = 0; $i < count($settings['data']); $i++) {
-								$comp[] =   $settings['data'][$i].PHP_EOL;
-	                        }
-	                    $comp[] =   '
+							$comp[] =   $settings['data'][$i].PHP_EOL;
+						}
+					$comp[] =   '
     });
 // Give the function some arguments, first is data, second id
 // You could do a third for the options attribute
 function drawChart(ArrayElem,IdElem)
     {
         var data = google.visualization.arrayToDataTable(ArrayElem);'.PHP_EOL;
-						if(!empty($this->options))
-							$comp[] =   $this->options;
-						$comp[] =   '
+					if(!empty($this->options))
+						$comp[] =   $this->options;
+					$comp[] =   '
         var chart = new google.visualization.'.$this->chartType.'(document.getElementById(IdElem));
         chart.draw(data, options);
     }';
-						if($wrap)
-							$comp[] =   PHP_EOL.'</script>'.PHP_EOL;
-						return implode("",$comp);
+					if($wrap)
+						$comp[] =   PHP_EOL.'</script>'.PHP_EOL;
+					return implode("",$comp);
 				}
 			
 			public	function ChartKind($type = 'pie')
