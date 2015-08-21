@@ -107,43 +107,44 @@
 					return $this;
 				}
 			
-            public  function CreateJavascript($settings = false)
-                {
-                    $library    =   (!empty($settings['lib']))? $settings['lib']:false;
-                    $wrap       =   (!empty($settings['wrap']))? $settings['wrap']:false;
+			public  function CreateJavascript($settings = false)
+				{
+					$library    =   (!empty($settings['lib']))? $settings['lib']:false;
+					$wrap       =   (!empty($settings['wrap']))? $settings['wrap']:false;
 					if(!empty($this->writer) && empty($settings['data']))
 						$settings['data']	=	$this->writer;
 					else
-                  		 $settings['data']	=   (!empty($settings['data']) && is_array($settings['data']))? $settings['data']:array();
-                   
-				    if($library)
-                        $comp[] =   '<script type="text/javascript" src="https://www.google.com/jsapi?autoload={\'modules\':[{\'name\':\'visualization\',\'version\':\'1.1\',\'packages\':[\'corechart\']}]}"></script>'.PHP_EOL;
-                    if($wrap)
-                        $comp[] =   '<script type="text/javascript">'.PHP_EOL;
-                    $comp[] =   '
+						$settings['data']	=   (!empty($settings['data']) && is_array($settings['data']))? $settings['data']:array();
+	
+					if($library)
+						$comp[] =   '<script type="text/javascript" src="https://www.google.com/jsapi?autoload={\'modules\':[{\'name\':\'visualization\',\'version\':\'1.1\',\'packages\':[\'corechart\']}]}"></script>'.PHP_EOL;
+					if($wrap)
+						$comp[] =   '<script type="text/javascript">'.PHP_EOL;
+						$comp[] =   '
 google.load("visualization", "1", {packages:["corechart"]});
 // Let the callback run a function
 google.setOnLoadCallback(function() {';
-                    for($i = 0; $i < count($settings['data']); $i++) {
-                            $comp[] =   $settings['data'][$i].PHP_EOL;
-                        }
-                    $comp[] =   '
+					for($i = 0; $i < count($settings['data']); $i++) {
+								$comp[] =   $settings['data'][$i].PHP_EOL;
+	                        }
+	                    $comp[] =   '
     });
 // Give the function some arguments, first is data, second id
 // You could do a third for the options attribute
 function drawChart(ArrayElem,IdElem)
     {
         var data = google.visualization.arrayToDataTable(ArrayElem);'.PHP_EOL;
-		if(!empty($this->options))
-            $comp[] =   $this->options;
-        $comp[] =   '
+						if(!empty($this->options))
+				            $comp[] =   $this->options;
+				        $comp[] =   '
         var chart = new google.visualization.'.$this->chartType.'(document.getElementById(IdElem));
         chart.draw(data, options);
     }';
-                    if($wrap)
-                        $comp[] =   PHP_EOL.'</script>'.PHP_EOL;
-                    return implode("",$comp);
-                }
+						if($wrap)
+							$comp[] =   PHP_EOL.'</script>'.PHP_EOL;
+						return implode("",$comp);
+				}
+			
 			public	function ChartKind($type = 'pie')
 				{
 					switch($type) {
@@ -207,5 +208,5 @@ function drawChart(ArrayElem,IdElem)
 					ob_end_clean();
 					return $data;
 				}
-        }
+		}
 ?>
