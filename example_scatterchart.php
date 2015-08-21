@@ -51,7 +51,7 @@ echo $Googlizer	->ChartOptions($options)
 ?> 
 <html> 
 <body>
-<-- echo out the containers for the charts to populate to -->
+<!-- echo out the containers for the charts to populate to -->
 <?php echo $Googlizer->Containers(); ?>
 </body> 
 </html>
