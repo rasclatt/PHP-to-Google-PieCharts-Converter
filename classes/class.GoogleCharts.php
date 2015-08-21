@@ -198,6 +198,9 @@ function drawChart(ArrayElem,IdElem)
 			
 			public	function Containers()
 				{
+					// Won't draw an error if dev forgets to create containers
+					if(empty($this->HTML))
+						return false;
 					ob_start();
 					echo implode(PHP_EOL,$this->HTML);
 					$data	=	ob_get_contents();
