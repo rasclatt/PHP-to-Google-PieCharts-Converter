@@ -1,13 +1,13 @@
 <?php
-     class   GoogleCharts
-        {
-            public      $newArr;
-            public      $VarName;
-            public      $DataArray;
-            public      $options;
+	class   GoogleCharts
+		{
+			public      $newArr;
+			public      $VarName;
+			public      $DataArray;
+			public      $options;
             
 			protected   $id;
-            protected   $compiler;
+			protected   $compiler;
 			protected	$chartType;
 			protected	$ValueArray;
 			protected	$HTML;
@@ -18,10 +18,10 @@
 			const	SCATTER	=	'scatter';
             
 			public  function __construct()
-                {
-                    $this->options  	=   array("title"=>"Untitled");
+				{
+					$this->options  	=   array("title"=>"Untitled");
 					$this->chartType	=	'pie';
-                }
+				}
 			
 			public	function CreateChart($settings = false)
 				{
@@ -71,39 +71,35 @@
 							$arr	=	(is_numeric($arr) || $arr === 'true' || $arr === 'false' || strpos($arr,"[") !== false)? $arr: "'$arr'";
 							$return	=	(strpos($arr,'{') !== false && strpos($arr,'}') !== false)? trim($arr,"'") : $arr;
 						}
-					
 					return (is_array($return))? '{ '.PHP_EOL."\t".implode(",\t".PHP_EOL."\t",$return).PHP_EOL.' }' : $return;
 				}
 			
-            public  function ChartOptions($opts)
-                {
-                    if(!is_array($opts))
-                        return $this;
-					
+			public  function ChartOptions($opts)
+				{
+					if(!is_array($opts))
+						return $this;
 					$this->options	=	"\t\tvar options =".$this->MakeJSObjects($opts).";";
-                    
 					return $this;
-                }
-				
-            public  function ChartInstance()
-                {
-                    $str    =   (!empty($this->VarName))? "drawChart({$this->VarName},'{$this->id}');":"";
-                    $str    .=  PHP_EOL;
-                    return $str;
-                }
-				
-            public  function ChartData()
-                {
-                    $str    =   (!empty($this->DataArray))? $this->DataArray:"";
-                    $str    .=  PHP_EOL;
-                    return $str;
-                }
-			
+				}
+
+			public  function ChartInstance()
+				{
+					$str    =   (!empty($this->VarName))? "drawChart({$this->VarName},'{$this->id}');":"";
+					$str    .=  PHP_EOL;
+					return $str;
+				}
+	
+			public  function ChartData()
+				{
+					$str    =   (!empty($this->DataArray))? $this->DataArray:"";
+					$str    .=  PHP_EOL;
+					return $str;
+				}
+	
 			public	function jScripter()
 				{
 					$this->writer[]	=	$this->ChartData();
 					$this->writer[]	=	$this->ChartInstance();
-					
 					return $this;
 				}
 			
@@ -115,7 +111,7 @@
 						$settings['data']	=	$this->writer;
 					else
 						$settings['data']	=   (!empty($settings['data']) && is_array($settings['data']))? $settings['data']:array();
-	
+		
 					if($library)
 						$comp[] =   '<script type="text/javascript" src="https://www.google.com/jsapi?autoload={\'modules\':[{\'name\':\'visualization\',\'version\':\'1.1\',\'packages\':[\'corechart\']}]}"></script>'.PHP_EOL;
 					if($wrap)
@@ -135,8 +131,8 @@ function drawChart(ArrayElem,IdElem)
     {
         var data = google.visualization.arrayToDataTable(ArrayElem);'.PHP_EOL;
 						if(!empty($this->options))
-				            $comp[] =   $this->options;
-				        $comp[] =   '
+							$comp[] =   $this->options;
+						$comp[] =   '
         var chart = new google.visualization.'.$this->chartType.'(document.getElementById(IdElem));
         chart.draw(data, options);
     }';
