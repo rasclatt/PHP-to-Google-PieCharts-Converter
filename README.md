@@ -6,7 +6,7 @@
 ````php
 <?php
 include_once(__DIR__.'/classes/class.nUberJTools.php');
-		
+// Here is just some misc. data from database (or manually created array)
 $result	=	array(
     0 => array(
             'id' => 1,
@@ -29,7 +29,10 @@ $result	=	array(
             'count(<50%)' => 44,
             'count(Between 50-60%)' => 12,
             'count(>60%)' => 76));
+
+// Initialize the GoogleCharts class
 $Googlizer  =	nUberJTools::GoogleCharts();
+// Just add a general title
 $title      =	"My Trend Chart";
 // Set options in general
 $options['legend']	=	'none';
