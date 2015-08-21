@@ -1,4 +1,5 @@
-include_once(CLIENT_DIR.'/classes/class.nUberJTools.php');
+<?php
+include_once(__DIR__.'/classes/class.nUberJTools.php');
 		
 $Googlizer				=	nUberJTools::GoogleCharts();
 $Googlizer				=	new GoogleCharts(); 
