@@ -2,7 +2,6 @@
 include_once(__DIR__.'/classes/class.nUberJTools.php');
 		
 $Googlizer		=	nUberJTools::GoogleCharts();
-$Googlizer		=	new GoogleCharts(); 
 $settings["incr"]	=	1; 
 $settings['id']		=	"trend".$settings["incr"]; 
 $title			=	"My Trend Chart";
