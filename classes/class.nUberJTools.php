@@ -5,7 +5,7 @@
 			
 			private		static	$GoogleCharts;
 			private		static	$jQValidator;
-			private		static	$jQueryToAjax;
+			private		static	$jQueryAjax;
 			
 			const	WP_COMPAT	=	'jQuery';
 			
@@ -45,12 +45,12 @@
 			
 			public	static	function jQueryAjax()
 				{
-					if(empty(self::$jQueryToAjax)) {
-							include_once(__DIR__.'/class.jQueryToAjax.php');
-							self::$jQueryToAjax	=	new jQueryToAjax(self::$jQObj);
+					if(empty(self::$jQueryAjax)) {
+							include_once(__DIR__.'/class.jQueryAjax.php');
+							self::$jQueryAjax	=	new jQueryAjax(self::$jQObj);
 						}
 					
-					return self::$jQueryToAjax;
+					return self::$jQueryAjax;
 				}
 			
 			public	static	function DocumentReady($val = false)
