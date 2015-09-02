@@ -1,4 +1,12 @@
 <?php
+/**
+ * Create google charts javascript script
+ * https://github.com/rasclatt/PHP-to-Google-PieCharts-Converter/
+ * Licensed under the GNU GENERAL PUBLIC LICENSE
+ * @author Rasclatt <rasclatt@me.com>
+ * @version 0.0.1
+ */
+ 
 	class   GoogleCharts
 		{
 			public      $newArr;
